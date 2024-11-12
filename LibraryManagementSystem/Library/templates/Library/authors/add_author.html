@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Author</title>
+    <style>
+        /* Base styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        /* Container styling */
+        .form-container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+        /* Header styling */
+        h2 {
+            color: #4CAF50;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        /* Form styling */
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-top: 10px;
+            font-weight: bold;
+            color: #666;
+        }
+        input[type="text"],
+        input[type="date"] {
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            width: 100%;
+        }
+        /* Button styling */
+        button {
+            padding: 12px;
+            margin-top: 20px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        /* Link button styling */
+        .view-authors {
+            display: inline-block;
+            margin-top: 15px;
+            text-decoration: none;
+        }
+        .view-authors button {
+            background-color: #2196F3;
+        }
+        .view-authors button:hover {
+            background-color: #1976D2;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <h2>Add New Author</h2>
+        
+        <form method="post">
+            {% csrf_token %}
+            <label for="author_name">Name:</label>
+            <input type="text" name="author_name" id="author_name" required>
+
+            <label for="biography">Biography:</label>
+            <input type="text" name="biography" id="biography">
+
+            <label for="birth_date">Birth Date:</label>
+            <input type="date" name="birth_date" id="birth_date">
+
+            <button type="submit">Save Author</button>
+        </form>
+
+        <!-- Button to view saved authors -->
+        <a href="{% url 'author_list' %}" class="view-authors">
+            <button type="button">View Saved Authors</button>
+        </a>
+    </div>
+
+</body>
+</html>

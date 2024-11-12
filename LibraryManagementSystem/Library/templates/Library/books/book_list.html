@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+        .book-list {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0;
+            list-style: none;
+        }
+        .book-list li {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .book-details {
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .book-details span {
+            color: #555;
+            font-weight: normal;
+        }
+        .edit-link {
+            background-color: #4CAF50;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .edit-link:hover {
+            background-color: #45a049;
+        }
+        .add-book {
+            display: inline-block;
+            text-align: center;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            transition: background-color 0.2s;
+        }
+        .add-book:hover {
+            background-color: #45a049;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 14px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <h1>Book List</h1>
+
+    <ul class="book-list">
+        {% for book in books %}
+            <li>
+                <div class="book-details">
+                    {{ book.book_title }} <span>by {{ book.author.author_name }}</span>
+                </div>
+                <a href="{% url 'edit_book' book.pk %}" class="edit-link">Edit</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <div style="text-align: center;">
+        <a href="{% url 'add_book' %}" class="add-book">+ Add New Book</a>
+    </div>
+
+    <div class="footer">
+        © {{ current_year }} My Library Management System
+    </div>
+</body>
+</html>
